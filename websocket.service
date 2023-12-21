@@ -1,0 +1,18 @@
+[Unit]
+Description=SSH WebSocket EPro
+Documentation=https://t.me/makhlukvpn_group
+After=syslog.target network-online.target
+
+[Service]
+Type=simple
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+NoNewPrivileges=true
+ExecStart=/usr/sbin/websocket -f /etc/websocket/tun.conf
+Restart=always
+RestartPreventExitStatus=23
+LimitNPROC=10000
+LimitNOFILE=1000000
+
+[Install]
+WantedBy=multi-user.target
